@@ -1,7 +1,25 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/jackbranch/Desktop/Makers Course Files/Week 3/Battle/app.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/jackbranch/Desktop/Makers Course Files/Week 3/Battle/spec/features/testing_infrastructure_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ]
     },
-    "timestamp": 1532446742
+    "timestamp": 1532448019
   }
 }
