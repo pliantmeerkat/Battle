@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <title>Battle</title>
+  <head>
+    <body>
+    <h1> <%= @game.players[0].name %> Vs. <%= @game.players[1].name %> </h1>
+    <h2> <%= @game.current_turn.name%>'s turn'</h2>
+    <div>
+      <%= @game.players[0].name %> hp: <%= @game.players[0].hit_points %>
+      <%= @game.players[1].name %> hp: <%= @game.players[1].hit_points %>
+    </div>
+    <form action="/attack">
+      <div class="button">
+        <input type="submit" value="Attack">
+      <div>
+    </form>
+    </body>
+  </head>
+</html>
