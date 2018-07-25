@@ -12,4 +12,4 @@
 
 ### Instructions
 
-## Cretits
+## Credits
