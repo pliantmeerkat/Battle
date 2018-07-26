@@ -1,19 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <title>Battle</title>
   <head>
-    <body>
-    <h1> <%= @game.players[0].name %> Vs. <%= @game.players[1].name %> </h1>
-    <h2> <%= @game.current_turn.name%>'s turn</h2>
-    <div>
-      <%= @game.players[0].name %> hp: <%= @game.players[0].hit_points %>
-      <%= @game.players[1].name %> hp: <%= @game.players[1].hit_points %>
-    </div>
-    <form action="/attack">
-      <div class="button">
-        <input type="submit" value="Attack">
-      <div>
-    </form>
-    </body>
+  <title>Battle</title>
   </head>
+  <style>
+  body {
+  background-color: gold;
+}
+.names {
+  border-style: dashed;
+  border-color: blue;
+  background-color: yellow;
+}
+.turn {
+  background-color: green;
+  font-size: 25px;
+  border-style: outset;
+}
+.hp {
+  background-color: magenta;
+  font-size: 20px;
+  border-style: inset;
+}
+.fight{
+  padding: 35px;
+  border-radius: 50%;
+  background-color: green;
+  font-size: 25px;
+  color: red;
+}
+.row {
+  display: flex;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+.rad {
+  padding: 10px;
+  color: red;
+  border: outset;
+  background-color: white;
+}
+  </style
+    <body align="center">
+     <div class="names"align="center">
+    <h1> <%= @game.players[0].name %> Vs. <%= @game.players[1].name %> </h1>
+     </div>
+      <div class="turn"align="center">
+    <h2> <%= @game.current_turn.name%>'s turn</h2>
+     </div>
+    <div class="hp"align="center">
+      <%= @game.players[0].name %> hp: <%= @game.players[0].hit_points %>
+        *****
+      <%= @game.players[1].name %> hp: <%= @game.players[1].hit_points %>
+        </div>
+        <div class="row">
+          <img src="https://media.playstation.com/is/image/SCEA/viking-squad-axe-03-image-ps4-us-28sep16?$image_block_desktop$"align="left"width="45%">
+      <form action="/attack">
+      <div align="center" class="buttons">
+      <br><h1>Choose your attack!</h1><br>
+      <label class="rad">
+      <input type="radio"name="attack_type"value="Power Attack">Power Attack
+      </label>
+       <label class="rad">
+      <input type="radio"name="attack_type"value="fast_attack">Swift Attack
+      </label>
+       <label class="rad">
+      <input type="radio"name="attack_type"value="ranged_attack">Ranged Attack 
+      </label>
+       <label class="rad">
+      <input type="radio"name="attack_type"value="defense_attack"> Defensive Move
+      </label>
+      <br><br><br><br><br><br><br>  
+        <input class="fight"type="submit" value="Attack">
+      </div>
+    </form>
+          <img src="https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/edd/2015/07/armored-samurai-royalty-free-game-art.png">
+        </div>
+    </body>
 </html>
+

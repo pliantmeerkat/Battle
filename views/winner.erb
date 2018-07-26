@@ -1,3 +1,32 @@
-<h1> <%=@game.winner%> is the winner </h1> 
-<h1> <%@game.looser%> has been defeated </h1>
+<head>
+<title>Battle</title>
+</head>
+<style>
+body {
+  background-color: gold;
+}
+.main {
+  border-style: inset;
+  background-image: url("https://i.ytimg.com/vi/WxlVoBvQGeo/maxresdefault.jpg");
+}
+.new_game {
+  padding: 25px;
+  color: white;
+  background-color: black;
+  border-radius: 45%;
+}
+</style>
+<body align="center">
+ <div align="center">
+<h1> <%=@winner%> is the winner </h1> 
+<h2> <%=@looser%> has been defeated </h2>
+ <div align="center"class="main">
 <h2> Game over! </h2>
+<img src="https://2static1.fjcdn.com/comments/Just+send+him+a+bunch+of+gandhi+memes+it+always+_bacc8545dac4124cc2a644b9a8b95b26.png">
+  </div>
+    <form action="/">
+    <div align="center">
+    <input class="new_game" type="submit" value="Again?">
+    </div>
+    </form>
+ </body>

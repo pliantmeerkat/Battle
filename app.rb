@@ -17,9 +17,9 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    player_1 = Player.new(params[:player_1])
-    player_2 = Player.new(params[:player_2])
-    @game = Game.create(player_1, player_2)
+    player1 = Player.new(params[:player_1])
+    player2 = Player.new(params[:player_2])
+    @game = Game.create(player1, player2)
     redirect '/play'
   end
 
@@ -27,11 +27,11 @@ class Battle < Sinatra::Base
     @game.attack
     redirect '/winner' if @game.game_over? == true
     erb(:attack)
-    
   end
 
   get '/winner' do
-    @game.winner
+    @winner = @game.winner.name
+    @looser = @game.looser.name
     erb(:winner)
   end
 
@@ -45,5 +45,4 @@ class Battle < Sinatra::Base
   end
 
   run! if app_file == $PROGRAM_NAME
-
 end

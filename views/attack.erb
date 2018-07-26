@@ -1,11 +1,45 @@
-
+<head>
+ <title> Battle </title>
+</head>
+<style>
+body {
+  background-color: red;
+}
+.upper {
+  align: center;
+  background-color: teal;
+  border-style: inset;
+  border-color: gold;
+}
+.ok {
+  align: center;
+  font-size: 35px;
+  background-color: blue;
+  padding: 40px;
+}
+.row {
+  display: flex;
+}
+</style>
+<body>
+ <div class="upper">
 <% if @game.current_turn == @game.players[0] %>
 <%= @game.players[0].name %> attacked <%= @game.players[1].name %>
+<br>
 <%= @game.players[1].name %> lost 10 hp
 <% else %>
 <%= @game.players[1].name %> attacked <%= @game.players[0].name %>
+<br>
 <%= @game.players[0].name %> lost 10 hp
 <% end %>
+ </div>
+  <br>
+  <br>
+ <div class="row"align="left">
+<img src="https://vignette.wikia.nocookie.net/town-of-salem/images/e/ee/Crusader_Avatar.png/revision/latest?cb=20170731083617"align="left"height="80%">
 <form action="/switchturns" method="post">
-  <input type="submit" value="OK">
-</form>§
+<input class="ok"type="submit" value="OK">
+</form>
+<img src="https://vignette.wikia.nocookie.net/world-of-warriors/images/7/7e/Mamluk_4.png/revision/latest?cb=20140613154405"align="right"height="50%"width="40%">
+ </div>
+</body>

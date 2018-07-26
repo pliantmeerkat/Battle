@@ -1,8 +1,46 @@
-<h1>Welcome to battle</h1>
-
-<form id="players" action="names" method="post">
-  <label>Player 1: <input type="text" name="player_1" value=""></label>
-  <label>Player 2: <input type="text" name="player_2" value=""></label>
-  <input type="submit" value="Play!">
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Battle</title>
+</head>
+<style>
+body {
+  background-color: teal;
+}
+.h1 { 
+  background-color: violet;
+}
+.treb {
+  border-style: outset;
+  border-width: 5px;
+  border-color: orange;
+}
+.main {
+  border-style: outset;
+  border-width: 5px;
+  border-color: orange;
+}
+.start {
+  padding: 10px;
+  font-size:24px;
+  background-color: green;
+  color: red;
+}
+</style>
 <body>
+  <div class="main"align="center">
+  <h1>Welcome to battle</h1>
+  <img class="treb"src="https://i.ytimg.com/vi/ZH7rN_nYfhg/hqdefault.jpg">
+    <form id="players" action="names" method="post">
+      <h3>Player 1 ***** Player 2</h3>
+      <label><input type="text" name="player_1" value=""></label>
+      <label><input type="text" name="player_2" value=""></label>
+      <br>
+      <br>
+      <input class="start"type="submit" value="Play!">
+    </form>
+    
+    
+  </div>
+</body>
+</html>
