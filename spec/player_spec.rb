@@ -1,7 +1,8 @@
 require './lib/player'
 describe Player do
-  let(:subject) { described_class.new('Durain') }
+  let(:subject)  { described_class.new('Durain') }
   let(:escargot) { described_class.new('Escargot') }
+  before(:each)  { allow(subject).to receive(:rand).and_return(10) }
   context 'Feature 1 Player name: unit tests' do
     describe '#name' do
       it { expect(subject).to respond_to(:name) }

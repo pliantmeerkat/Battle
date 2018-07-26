@@ -8,8 +8,7 @@ class Player
     @hit_points = DEFAULT_HITPOINTS
   end
 
-  def receive_damage
-    @hit_points -= 10
+  def receive_damage()
+    @hit_points -= rand(25)
   end
-
 end

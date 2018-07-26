@@ -5,6 +5,10 @@ require './lib/game'
 # Battle
 class Battle < Sinatra::Base
 
+  before do
+    @game = Game.instance
+  end
+
   enable :sessions
   set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
 
@@ -13,23 +17,30 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:player_1]), Player.new(params[:player_2]))
+    player_1 = Player.new(params[:player_1])
+    player_2 = Player.new(params[:player_2])
+    @game = Game.create(player_1, player_2)
     redirect '/play'
   end
 
   get '/attack' do
-    @game = $game
-    @game.attack(@game.players[1])
+    @game.attack
+    redirect '/winner' if @game.game_over? == true
     erb(:attack)
+    
   end
 
-  post '/switch-turns' do
-    $game.switch_turns
+  get '/winner' do
+    @game.winner
+    erb(:winner)
+  end
+
+  post '/switchturns' do
+    @game.switch_turns
     redirect('/play')
   end
 
   get '/play' do
-    @game = $game
     erb(:play)
   end
 
