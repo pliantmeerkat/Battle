@@ -2,6 +2,8 @@ require 'sinatra'
 require "securerandom"
 require './lib/player'
 require './lib/game'
+require './lib/damage'
+require './lib/attack'
 # Battle
 class Battle < Sinatra::Base
 
@@ -19,12 +21,12 @@ class Battle < Sinatra::Base
   post '/names' do
     player1 = Player.new(params[:player_1])
     player2 = Player.new(params[:player_2])
-    @game = Game.create(player1, player2)
+    @game = Game.create(player1, player2, Damage, Attack)
     redirect '/play'
   end
 
   get '/attack' do
-    @game.attack
+    @game.attack('attack_power')
     redirect '/winner' if @game.game_over? == true
     erb(:attack)
   end

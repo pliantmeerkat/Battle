@@ -15,10 +15,4 @@ describe Player do
       it { expect(subject.hit_points).to eq(described_class::DEFAULT_HITPOINTS) }
     end
   end
-  context 'Feature 3 Receive damage tests' do
-    describe '#receive_damage' do
-      it { expect(subject).to respond_to(:receive_damage) }
-      it { expect { subject.receive_damage }.to change { subject.hit_points }.by(-10) }
-    end
-  end
 end

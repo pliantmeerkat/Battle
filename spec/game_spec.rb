@@ -1,9 +1,13 @@
 require './lib/game'
 describe Game do
-  let(:player_class) { double :player_class, new: :player }
+  let(:player_class) { double :player_class, new: player }
   let(:player_1)     { double :player, name: 'Durain' }
   let(:player_2)     { double :player, name: 'Escargot' }
-  let(:subject)      { described_class.new(player_1, player_2) }
+  let(:damage_class) { double :damage_class, new: damage_inst }
+  let(:damage_inst)  { double :damage_inst }
+  let(:attack_class) { double :attack_class, new: attack_inst }
+  let(:attack_inst)  { double :attack_inst }
+  let(:subject)      { described_class.new(player_1, player_2, damage_class, attack_class) }
   context 'Feature 1 players tets' do
     describe '#players' do
       it { expect(subject.players).to eq([player_1, player_2] ) }
@@ -17,8 +21,8 @@ describe Game do
       end
       it { expect(subject).to respond_to(:attack) }
       it 'triggers receive damage' do
-        expect(player_2).to receive(:receive_damage)
-        subject.attack
+        expect(player_2).to receive(:hit_points)
+        subject.attack('attack_power')
       end
     end
   end
