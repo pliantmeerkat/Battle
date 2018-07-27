@@ -25,8 +25,14 @@ class Battle < Sinatra::Base
     redirect '/play'
   end
 
+  get '/attackchoice' do
+    @game.attack_choice = params[:attack_type]
+    redirect '/attack'
+  end
+
   get '/attack' do
-    @game.attack('attack_power')
+    @messages = @game.attack
+    @attack_type = @game.attack_choice_output
     redirect '/winner' if @game.game_over? == true
     erb(:attack)
   end

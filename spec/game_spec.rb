@@ -21,8 +21,30 @@ describe Game do
       end
       it { expect(subject).to respond_to(:attack) }
       it 'triggers receive damage' do
-        expect(player_2).to receive(:hit_points)
-        subject.attack('attack_power')
+        # expect(player_2).to receive(:hit_points)
+        # subject.attack
+      end
+    end
+    describe '#attack_choice' do
+      it { expect(subject).to respond_to(:attack_choice) }
+    end
+    describe '#attack_choice_output' do
+      it { expect(subject).to respond_to(:attack_choice_output) }
+      it 'returns power_attack' do
+        subject.attack_choice = 'power_attack'
+        expect(subject.attack_choice_output).to eq('Power Attacked')
+      end
+      it 'returns fast_attack' do
+        subject.attack_choice = 'fast_attack'
+        expect(subject.attack_choice_output).to eq('Swiftly Attacked')
+      end
+      it 'returns ranged_attack' do
+        subject.attack_choice = 'ranged_attack'
+        expect(subject.attack_choice_output).to eq('Range Attacked')
+      end
+      it 'returns defense_attack' do
+        subject.attack_choice = 'defense_attack'
+        expect(subject.attack_choice_output).to eq('Defensivley Attacked')
       end
     end
   end
@@ -52,16 +74,26 @@ describe Game do
         allow(player_2).to receive(:hit_points) { 0 }
         expect(subject.game_over?).to eq(true)
       end
-=begin     will fix later
-      it 'returns winner/looser correctly' do
-        allow(player_1).to receive(:hit_points) { -10 }
+    end
+  end
+  context 'Feature 5 Attack Modifiers' do
+    before(:each) do
+      allow(player_1).to receive(:hit_points)          { 100 }
+      allow(player_1).to receive(:stunned)             { true }
+      allow(player_2).to receive(:bleeding)            { true }
+      allow(damage_inst).to receive(:damage_mod_bleed) { 0 }
+    end
+    describe '#attack_mod_on_player' do
+      it { expect(subject).to respond_to(:attack_mod_on_player) }
+      it 'subject can bleed' do
         allow(player_2).to receive(:hit_points) { 100 }
-        expect(subject.game_over?).to eq(true)
-        subject.winner
-        expect(subject.winner).to eq(player_2)
-        expect(subject.looser).to eq(player_1)
+        expect(subject.attack_mod_on_player).to eq(0)
       end
-=end
+      it 'stops a stunned player from attacking' do
+        allow(player_2).to receive(:bleeding) { false }
+        subject.attack_mod_on_player
+        expect(subject.attack).to eq([0, 0])
+      end
     end
   end
 end

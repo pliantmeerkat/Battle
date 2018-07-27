@@ -42,4 +42,11 @@ describe Damage do
       it { expect(subject.damage_return([25.6, 0, 1])).to eq([0, 'm']) }
     end
   end
+  context 'Feature 3 - Damage modifiers' do
+    before(:each) { allow(subject).to receive(:rand) { 2 } }
+    describe '#damage_mod_bleed' do
+      it { expect(subject).to respond_to(:damage_mod_bleed) }
+      it { expect(subject.damage_mod_bleed).to eq(7) }
+    end
+  end
 end

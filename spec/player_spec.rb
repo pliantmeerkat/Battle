@@ -15,4 +15,14 @@ describe Player do
       it { expect(subject.hit_points).to eq(described_class::DEFAULT_HITPOINTS) }
     end
   end
+  context 'Feature 3 Attack modifier effects tests' do
+    describe '#stunned' do
+      it { expect(subject).to respond_to(:stunned) }
+      it { expect(subject.stunned).to eq(false) }
+    end
+    describe '#bleeding' do
+      it { expect(subject).to respond_to(:bleeding) }
+      it { expect(subject.bleeding).to eq(false) }
+    end
+  end
 end

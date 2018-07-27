@@ -23,15 +23,13 @@ body {
 </style>
 <body>
  <div class="upper">
-<% if @game.current_turn == @game.players[0] %>
-<%= @game.players[0].name %> attacked <%= @game.players[1].name %>
+<%= @game.current_turn.name %> <%=@attack_type%> <%= @game.opponent_of(@game.current_turn).name %>
 <br>
-<%= @game.players[1].name %> lost 10 hp
-<% else %>
-<%= @game.players[1].name %> attacked <%= @game.players[0].name %>
-<br>
-<%= @game.players[0].name %> lost 10 hp
-<% end %>
+<%= @game.opponent_of(@game.current_turn).name %> lost <%=@messages[0].round(2)%> hp
+<% if @messages[1] == 'm' then %> <%="#{@game.current_turn.name} Has Missed!"%> <%end%>
+<% if @messages[1] == 's' then %> <%="#{@game.opponent_of(@gamecurrent_turn).name} Has been stunned!"%><%end%>
+<% if @messages[1] == 'b' then %> <%="#{@game.opponent_of(@gamecurrent_turn).name} Is wounded and bleeding!"%><%end%>
+
  </div>
   <br>
   <br>

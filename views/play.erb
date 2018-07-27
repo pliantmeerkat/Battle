@@ -51,17 +51,17 @@
     <h2> <%= @game.current_turn.name%>'s turn</h2>
      </div>
     <div class="hp"align="center">
-      <%= @game.players[0].name %> hp: <%= @game.players[0].hit_points %>
+      <%= @game.players[0].name %> hp: <%= @game.players[0].hit_points.round(2) %>
         *****
-      <%= @game.players[1].name %> hp: <%= @game.players[1].hit_points %>
+      <%= @game.players[1].name %> hp: <%= @game.players[1].hit_points.round(2) %>
         </div>
         <div class="row">
           <img src="https://media.playstation.com/is/image/SCEA/viking-squad-axe-03-image-ps4-us-28sep16?$image_block_desktop$"align="left"width="45%">
-      <form action="/attack">
+      <form id="attack_type" action="/attackchoice">
       <div align="center" class="buttons">
       <br><h1>Choose your attack!</h1><br>
       <label class="rad">
-      <input type="radio"name="attack_type"value="Power Attack">Power Attack
+      <input type="radio"name="attack_type"value="power_attack">Power Attack
       </label>
        <label class="rad">
       <input type="radio"name="attack_type"value="fast_attack">Swift Attack
