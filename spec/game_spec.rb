@@ -99,12 +99,7 @@ describe Game do
       end
     end
     describe '#attack_heal' do
-      it { expect(subject).to respond_to(:attack_heal).with(1).arguments }
-      it 'player can heal on defensive attack' do
-        allow(player_1).to receive(:hit_points).and_return(100)
-        subject.attack_heal(10)
-        expect(player_2.hit_points).to eq(100)
-      end
+      it { expect(subject).to respond_to(:attack_heal) }
     end
   end
 end
