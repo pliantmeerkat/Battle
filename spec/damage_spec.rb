@@ -31,6 +31,10 @@ describe Damage do
       it { expect(subject).to respond_to(:damage_default) }
       it { expect(subject.damage_default).to eq([25.6, 0, 0]) }
     end
+    describe 'damage_heal' do
+      it { expect(subject).to respond_to(:damage_heal)}
+      it { expect(subject.damage_heal).to eq(35.6) }
+    end
   end
   context 'Feature 2 - Return damage' do
     before(:each) { allow(subject).to receive(:rand) { 2 } }

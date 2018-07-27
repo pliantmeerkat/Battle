@@ -1,12 +1,13 @@
 require './lib/game'
 describe Game do
-  let(:player_class) { double :player_class, new: player }
+  let(:player_class) { double :player_class, new: :player }
+  let(:player)       { double :player  }
   let(:player_1)     { double :player, name: 'Durain' }
   let(:player_2)     { double :player, name: 'Escargot' }
   let(:damage_class) { double :damage_class, new: damage_inst }
-  let(:damage_inst)  { double :damage_inst }
+  let(:damage_inst)  { double :damage_inst                    }
   let(:attack_class) { double :attack_class, new: attack_inst }
-  let(:attack_inst)  { double :attack_inst }
+  let(:attack_inst)  { double :attack_inst, attack_type: 'power_attack' }
   let(:subject)      { described_class.new(player_1, player_2, damage_class, attack_class) }
   context 'Feature 1 players tets' do
     describe '#players' do
@@ -78,21 +79,31 @@ describe Game do
   end
   context 'Feature 5 Attack Modifiers' do
     before(:each) do
-      allow(player_1).to receive(:hit_points)          { 100 }
-      allow(player_1).to receive(:stunned)             { true }
-      allow(player_2).to receive(:bleeding)            { true }
       allow(damage_inst).to receive(:damage_mod_bleed) { 0 }
+      allow(attack_inst).to receive(:attack_type)
+      allow(player_1).to receive(:hit_points) { 100 }
+      allow(player_2).to receive(:hit_points) { 100 }
+      allow(player_1).to receive(:bleeding) { 100 }
+      allow(player_2).to receive(:bleeding) { 100 }
+      allow(player_1).to receive(:stunned) { 100 }
+      allow(player_2).to receive(:stunned) { 100 }
     end
     describe '#attack_mod_on_player' do
       it { expect(subject).to respond_to(:attack_mod_on_player) }
       it 'subject can bleed' do
-        allow(player_2).to receive(:hit_points) { 100 }
-        expect(subject.attack_mod_on_player).to eq(0)
+        expect(subject.attack_mod_on_player).to eq(false)
       end
       it 'stops a stunned player from attacking' do
-        allow(player_2).to receive(:bleeding) { false }
         subject.attack_mod_on_player
-        expect(subject.attack).to eq([0, 0])
+        # expect(subject.attack).to eq([0, 0])
+      end
+    end
+    describe '#attack_heal' do
+      it { expect(subject).to respond_to(:attack_heal).with(1).arguments }
+      it 'player can heal on defensive attack' do
+        allow(player_1).to receive(:hit_points).and_return(100)
+        subject.attack_heal(10)
+        expect(player_2.hit_points).to eq(100)
       end
     end
   end

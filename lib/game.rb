@@ -25,9 +25,17 @@ class Game
     @looser = player_2 # to prevent tests from crashing
   end
 
+  def attack_heal
+    current_turn.hit_points += @damage_class.damage_heal
+  end
+
   def attack
-    return [0, 0] if attack_mod_on_player == true
+    if attack_mod_on_player == true
+      current_turn.stunned = false
+      return [0, 0]
+    end
     damage = @attack_class.attack_type(attack_choice)
+    if attack_choice == 'defense_attack' then attack_heal end
     opponent_of(current_turn).hit_points -= damage[0]
     damage
   end
@@ -56,8 +64,10 @@ class Game
   def attack_mod_on_player
     if opponent_of(current_turn).bleeding == true
       opponent_of(current_turn).hit_points -= @damage_class.damage_mod_bleed
+      opponent_of(current_turn).bleeding = false
     elsif current_turn.stunned then true
     end
+    false
   end
 
   def opponent_of(a_player)

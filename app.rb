@@ -4,6 +4,7 @@ require './lib/player'
 require './lib/game'
 require './lib/damage'
 require './lib/attack'
+
 # Battle
 class Battle < Sinatra::Base
 
